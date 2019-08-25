@@ -1,3 +1,7 @@
 class Board {
-    // fields, constructors, and methods
+    constructor() {
+        this.rows = 6;
+        this.columns = 7;
+        this.spaces = []; 
+    }
 }
