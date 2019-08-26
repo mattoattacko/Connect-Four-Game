@@ -7,5 +7,16 @@
 
 // Event listener should listen for a click event on the #begin-game button.
 // Event listener should have a callback function that calls the startGame() method on the newly created Game object
-// Inside the callback function, hid the start button and show the game board. 
 
+
+
+
+const game = new Game();
+
+document.getElementById('begin-game').addEventListener('click', function() {
+    game.startGame();
+
+    // Inside the callback function, hid the start button and show the game board. 
+    this.style.display = 'none';
+    document.getElementById('play-area').style.opacity = '1';
+})
