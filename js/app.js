@@ -8,9 +8,6 @@
 // Event listener should listen for a click event on the #begin-game button.
 // Event listener should have a callback function that calls the startGame() method on the newly created Game object
 
-
-
-
 const game = new Game();
 
 document.getElementById('begin-game').addEventListener('click', function() {
