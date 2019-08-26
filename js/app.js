@@ -1,0 +1,11 @@
+// Here is where we will build the interactive portion of our game, where the DOM meets the objects. 
+// We will use this file to initialize the Game objects and listen for user triggered events (eg: mouse clicks or key presses)
+
+/** 
+ * Listens for click on `#begin-game` and calls startGame() on game object
+ */
+
+// Event listener should listen for a click event on the #begin-game button.
+// Event listener should have a callback function that calls the startGame() method on the newly created Game object
+// Inside the callback function, hid the start button and show the game board. 
+
