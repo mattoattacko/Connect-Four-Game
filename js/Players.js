@@ -38,4 +38,24 @@ class Players {
     get activeToken() {
         return this.unusedTokens[0];
     }
+
+    /**
+     * Gets all tokens that have not been dropped
+     * @return {array} - Array of unused tokens
+     * The filter method is called on an array and is passed to test, and returns another array any elements from the original array that passed our test, which is any token property that does not equal true.
+     * We are calling it on the players tokens property, which is holding an array of every token object belonging to the player.
+     * Could also use a for loop to find the non-dropped tokens and pushed them onto an array.
+     */
+    get unusedTokens() {
+        return this.tokens.filter(token => !token.dropped);
+    }
+
+    /**
+     * Gets the active token by returning the first token in the array of unused tokens.
+     * @return {Object} - First token object in the array of unusedTokens array we just created.
+     * Everytime the player takes a turn, our getter method grabs the first token object in this array.
+     */
+    get activeToken() {
+        return this.unusedTokens[0];
+    }
 }
