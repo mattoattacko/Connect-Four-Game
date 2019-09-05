@@ -1,5 +1,5 @@
-class Tokens {
-    constructor() {
+class Token {
+    constructor(index, owner) {
         this.owner = owner;
         this.id = `token-${index}-${owner.id}`;
         this.dropped = false;
@@ -21,10 +21,3 @@ class Tokens {
         token.style.backgroundColor = this.owner.color;
     }
 }
-
-
-
- * 
- * Getter method "htmlToken()"...
- * should return the HTML token element associated with the Token object.
- */
