@@ -3,6 +3,25 @@ class Token {
         this.owner = owner;
         this.id = `token-${index}-${owner.id}`;
         this.dropped = false;
+        // Tells us what column a token is in. Starts at zero because all tokens first appear on the left most column of the board. Updated with "moveLeft/Right" methods.
+        this.columnLocation = 0;
+    }
+
+    /**
+     * Gets associated htmlToken.
+     * @return {element} - html element associated with token object.
+     */
+    get htmlToken() {
+        return document.getElementById(this.id);
+    }
+
+    /**
+     * Gets left offset of html element.
+     * @return {number} - Left offset of Token object's "htmlToken".
+     */
+    get offsetLeft() {
+        // The html token is accessed via the htmlToken getter method, which will return the html element. This allows us to access the value of the elements "offsetLeft" property.
+        return this.htmlToken.offsetLeft;
     }
 
     /**
@@ -19,5 +38,35 @@ class Token {
         token.setAttribute('class', 'token');
         // Set the background color of the token element equal to the Token object's owner's color property.
         token.style.backgroundColor = this.owner.color;
+    }
+
+    /**
+     * Moves html token one column to the left.
+     */
+    moveLeft() {
+        // Checks to make sure we are not at 0, the most left location on the board we can be.
+        if (this.columnLocation > 0) {
+            // Updates the left position of the html token element. 76 is the pixel width of a column. 
+            this.htmlToken.style.left = this.offsetLeft - 76;
+            // Updates columnLocation property. We subtract 1 from whatever its current value is to signify that the token has moved one column to the left. 
+            this.columnLocation -= 1;
+        }
+    }
+
+    /**
+     * Moves html token one column to right. 
+     * @param {number} columns - number of columns on the game board
+     * When the moveRight method is called from inside the Game class, the value for the number of columns will be passed in. 
+     * We use this value to determine if the token is in the last (right most) column. 
+     * If the token is in the last column, we don't want it to move any further right. 
+     */
+    moveRight(columns) {
+        // our "columnLocation" counter starts at zero, not one. So we check to see if the "columnLocation" is less than the total number of columns minus one. 
+        if (this.columnLocation < columns - 1) {
+            // We update the value of the left position of the html token. We add 76pix so we move the html token further to the right on the board. 
+            this.htmlToken.style.left = this.offsetLeft + 76;
+            // we update the "columnLocation" prop so that it's increaed by one to signify that the token has moved one column to the right.
+            this.columnLocation += 1;
+        }
     }
 }
