@@ -48,19 +48,22 @@ class Game {
      * @param   {Object}    e - Keydown event object
      * This method should receive the keydown event as an argument.
      * This method should not return anything.
-     * This method should test to see if the Game is        ready, using the Game object's ready property.
-     * If the game is ready, this method should check for   a key value of ArrowLeft, ArrowRight, or             ArrowDown. This can be accomplished with an empty    if...else conditional.
+     * This method should test to see if the Game is ready, using the Game object's ready property.
+     * If the game is ready, this method should check for a key value of ArrowLeft, ArrowRight, or ArrowDown. This can be accomplished with an empty if...else conditional.
      */
 
-    // method receives the event object as argument. This is the event object that is passed to the event listener callback method in app.js
+    // Method receives the event object as argument. This is the event object that is passed to the event listener callback method in app.js
     handleKeydown(e) {
-        // checks if game is ready. Our Game object has a "ready" property that holds a true or false value
+        // Checks if game is ready. Our Game object has a "ready" property that holds a true or false value
         if (this.ready) {
-            // checks event objects "key" property, which returns a string of the name of the key that was pressed
+            // Checks event objects "key" property, which returns a string of the name of the key that was pressed
             if (e.key === "ArrowLeft") {
-                // move left
+                // If it was a left arrow, we call the moveLeft method on activeToken, which is accessed as a property on the activePlayer object, which because of our getter method is accessed as a property of our Game object. 
+                this.activePlayer.activeToken.moveLeft();
             } else if (e.key === "ArrowRight") {
-                // move right
+                // When we call moveRight, we have to pass in the number of columns, accessed by "this.board.columns". The board object is held in a prop of the game object. The board object has a prop called "columns" where the number of columns is set. 
+                // We pass in this value rather than a static value inside the method because we might want to refactor our game in the future to allow further user customization. 
+                this.activePlayer.activeToken.moveRight(this.board.columns);
             } else if (e.key === "ArrowDown") {
                 // play token
             }
