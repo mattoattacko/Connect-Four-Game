@@ -69,4 +69,13 @@ class Token {
             this.columnLocation += 1;
         }
     }
+
+    /**
+     * Ideas for the drop() method
+     * Drops html token into the target board space.
+     * @param {Object} target - is the Space object the Token is beign dropped into.
+     * @param {function} rest - The reset function to call after the drop animation has completed. 
+     */
+
+    // We use jQuery to animate the htmlToken falling into the targeted space.
 }
