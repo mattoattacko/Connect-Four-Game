@@ -51,4 +51,19 @@ class Game {
      * This method should test to see if the Game is        ready, using the Game object's ready property.
      * If the game is ready, this method should check for   a key value of ArrowLeft, ArrowRight, or             ArrowDown. This can be accomplished with an empty    if...else conditional.
      */
+
+    // method receives the event object as argument. This is the event object that is passed to the event listener callback method in app.js
+    handleKeydown(e) {
+        // checks if game is ready. Our Game object has a "ready" property that holds a true or false value
+        if (this.ready) {
+            // checks event objects "key" property, which returns a string of the name of the key that was pressed
+            if (e.key === "ArrowLeft") {
+                // move left
+            } else if (e.key === "ArrowRight") {
+                // move right
+            } else if (e.key === "ArrowDown") {
+                // play token
+            }
+        }
+    }
 }

@@ -16,4 +16,13 @@ document.getElementById('begin-game').addEventListener('click', function() {
     // Inside the callback function, hid the start button and show the game board. 
     this.style.display = 'none';
     document.getElementById('play-area').style.opacity = '1';
-})
+});
+
+/**
+ * Listens for keyboard presses
+ * Callback function in the event listener receives the event object as an argument. 
+ * Inside the callback, we call the "handleKeydown" method on the Game object and pass in that event.
+ */
+document.addEventListener('keydown', function(event) {
+    game.handleKeydown(event);
+});
