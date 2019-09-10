@@ -48,7 +48,7 @@ class Game {
      * @param   {Object}    e - Keydown event object
      * This method should receive the keydown event as an argument.
      * This method should not return anything.
-This method should test to see if the Game is ready, using the Game object's ready property.
-If the game is ready, this method should check for a key value of ArrowLeft, ArrowRight, or ArrowDown. This can be accomplished with an empty if...else conditional.
+     * This method should test to see if the Game is        ready, using the Game object's ready property.
+     * If the game is ready, this method should check for   a key value of ArrowLeft, ArrowRight, or             ArrowDown. This can be accomplished with an empty    if...else conditional.
      */
 }
