@@ -73,9 +73,16 @@ class Token {
     /**
      * Ideas for the drop() method
      * Drops html token into the target board space.
-     * @param {Object} target - is the Space object the Token is beign dropped into.
-     * @param {function} rest - The reset function to call after the drop animation has completed. 
+     * @param {Object} target - is the actual Space object the Token is beign dropped into. Target is the argument and is the Space object the Token is being dropped into.
+     * @param {function} reset - The reset function to call after the drop animation has completed. Reset is the argument and is a callback function we will write later. 
      */
+    drop(target, reset) {
+        // Sets our active token's dropped property to true so that when the game needs to find the active players unused tokens, "this" token will no longer be included. 
+        this.dropped = true;
 
-    // We use jQuery to animate the htmlToken falling into the targeted space.
+        // We use jQuery to animate the htmlToken falling into the targeted space.
+        $(this.htmlToken).animate({
+            top: (target.y * target.diameter)
+        }, 750, 'easeOutBounce', reset);
+    }
 }
