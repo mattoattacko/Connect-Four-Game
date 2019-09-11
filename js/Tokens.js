@@ -82,7 +82,9 @@ class Token {
 
         // We use jQuery to animate the htmlToken falling into the targeted space.
         $(this.htmlToken).animate({
+            // The active tokens html counterpart is animated so that its top position value is changed to a value equal to the target spaces row * the target spaces diameter.
             top: (target.y * target.diameter)
+            // 750 is how long the animation takes in miliseconds, and 'easeOutBounce' is how the animation looks. "reset" is just our callback function.
         }, 750, 'easeOutBounce', reset);
     }
 }
