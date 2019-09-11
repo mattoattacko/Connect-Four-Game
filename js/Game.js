@@ -74,17 +74,29 @@ class Game {
      * Finds Space object to drop Token into, then drops Token
      */
     playToken() {
+        // Spaces variable now holds a reference to the 2D array of Space objects representing the game board.
         let spaces = this.board.spaces;
+        // Stores the activeToken
         let activeToken = this.activePlayer.activeToken;
+        // Access the target column
         let targetColumn = spaces[activeToken.columnLocation];
+        // assigned to null because at the beginning of the method, we don't have a target space yet. 
         let targetSpace = null;
 
+        // Here is where we identify the targetSpace
+        // iterates through the individual spaces objects in the targetColumn array
         for (let space of targetColumn) {
+            // this tells us if the space is empty and is available to target
             if (space.token === null) {
+                // we set the target space equal to that potential space
                 targetSpace = space;
             }
+            // at the end of this for loop, the targetSpace variable will hold the lowest empty space in that column, which is now our targetSpace
         }
 
+        // If at the end of the loop, the targetSpace variable is still equal to null, that means the column is full and our for loop never found an empty space in the targetColumn. If so, nothing should happen. 
+
+        // If that is not the case and we found a target space, then we set the games ready state to false (so the game can't continue until after the htmlToken is dropped) and call the drop method on the activeToken passing in the targetSpace as a parameter.  
         if (targetSpace !== null) {
             game.ready = false;
             activeToken.drop(targetSpace);
