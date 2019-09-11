@@ -98,6 +98,7 @@ class Game {
 
         // If that is not the case and we found a target space, then we set the games ready state to false (so the game can't continue until after the htmlToken is dropped) and call the drop method on the activeToken passing in the targetSpace as a parameter.  
         if (targetSpace !== null) {
+            console.log('token played');
             game.ready = false;
             activeToken.drop(targetSpace);
         }
