@@ -93,9 +93,7 @@ class Game {
             }
             // at the end of this for loop, the targetSpace variable will hold the lowest empty space in that column, which is now our targetSpace
         }
-
         // If at the end of the loop, the targetSpace variable is still equal to null, that means the column is full and our for loop never found an empty space in the targetColumn. If so, nothing should happen. 
-
         // If that is not the case and we found a target space, then we set the games ready state to false (so the game can't continue until after the htmlToken is dropped) and call the drop method on the activeToken passing in the targetSpace as a parameter.  
         if (targetSpace !== null) {
             console.log('token played');
@@ -103,4 +101,93 @@ class Game {
             activeToken.drop(targetSpace);
         }
     }
+
+
+
+
+    /**
+     * Checks if there is a winner on the board after each token drop.
+     * @param {Object} target - Targeted space for dropped token.
+     * @return {boolean} Boolean value indicating wether the game has been won (true) or not (false).
+     */
+    checkForWin(target) {
+        const owner = target.token.owner;
+        let win = false;
+        console.log('checkForWin called');
+        
+        // Vertical
+        for (let x = 0; x < this.board.columns; x++) {
+            for (let y = 0; y < this.board.rows - 3; y++) {
+                console.log(x,y);
+                console.log(y + 1);
+                console.log(y + 2);
+                console.log(y + 3);
+                if (this.board.spaces[x][y].owner === owner &&
+                    this.board.spaces[x][y+1].owner === owner &&
+                    this.board.spaces[x][y+2].owner === owner &&
+                    this.board.spaces[x][y+3].owner === owner) {
+                        win = true;
+                        console.log(win);
+                }
+            }
+        }
+
+        // Horizontal
+        for (let x = 0; x < this.board.columns -3; x++) {
+            for (let y = 0; y < this.board.rows; y++) {
+                if (this.board.spaces[x][y].owner === owner &&
+                    this.board.spaces[x+1][y].owner === owner && 
+    				this.board.spaces[x+2][y].owner === owner && 
+    				this.board.spaces[x+3][y].owner === owner) {
+                        win = true;
+                }
+            }
+        }
+
+        // Diagonal
+        for (let x = 3; x < this.board.columns; x++) {
+            for (let y = 0; y < this.board.rows - 3; y++) {
+                if (this.board.spaces[x][y].owner === owner && 
+    				this.board.spaces[x-1][y+1].owner === owner && 
+    				this.board.spaces[x-2][y+2].owner === owner && 
+    				this.board.spaces[x-3][y+3].owner === owner) {
+                    	win = true;
+                }           
+            }
+        }
+
+        // Diagonal 
+        for (let x = 3; x < this.board.columns; x++) {
+            for (let y = 3; y < this.board.rows; y++) {
+                if (this.board.spaces[x][y].owner === owner && 
+    				this.board.spaces[x-1][y-1].owner === owner && 
+    				this.board.spaces[x-2][y-2].owner === owner && 
+    				this.board.spaces[x-3][y-3].owner === owner) {
+                    	win = true;
+                }       
+            }
+        }
+
+        return win;
+    }
+
+    /**
+     * switchPlayers() method - Switches active player
+     * Method receives no arguments and does not return anything.
+     * Inside this method, we want to iterate through the array of Players. 
+     * For each Player object. switch the value of its "active" property.
+     * If the "active" property is set to "true", it should now be set to "false" and vice versa.
+     */
+
+
+
+    /** 
+     * gameOver() method - Displays the "Game Over" message
+     * @param {string} message - "Game Over" message.
+     * @return nothing
+     * Our method receives one argument "message", a string value to display on screen when the game is over.
+     * Inside of index.html there is an html element w/ the 'id' "game-over". This is the element that will hold the game over message.
+     * The element's display property is set to "none".
+     * To display the message, the display property must be set to "block" and the "textContent" property must be set equal to the message.
+     */
 }

@@ -28,6 +28,29 @@ class Spaces {
         document.getElementById("mask").appendChild(svgSpace);
     }
 
+    /**
+     * mark() method ideas
+     * Updates space to reflect a token has been dropped into it. 
+     * @param {Object} token - The dropped token
+     * method returns nothing
+     * method should set the Space object's token property to the Token object passed to the method.
+     */
+
+    /**
+     * Ideas for getther method owner()
+     * Checks if space has an associated token to find its owner
+     * Recieves no arguments 
+     * @return {null|Object} Returns null or the owner object of the space's associated token. 
+     * Check to see if a Space object has an occupying Token object. If it does not, return null. else return the owner of the Token object. 
+     */
+    get owner() {
+        if (this.token === null) {
+            return null;
+        } else {
+            return this.token.owner;
+        }
+    }
+
 }
 
 /**
