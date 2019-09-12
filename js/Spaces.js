@@ -29,12 +29,16 @@ class Spaces {
     }
 
     /**
-     * mark() method ideas
-     * Updates space to reflect a token has been dropped into it. 
+     * mark() method - Updates space to reflect a token has been dropped into it. 
      * @param {Object} token - The dropped token
      * method returns nothing
-     * method should set the Space object's token property to the Token object passed to the method.
+     * method sets the Space object's token property to the Token object passed to the method.
+     * purpose of this method is to change a given Space object's token property so it's set to the token object that was dropped into it.
      */
+    mark(token) {
+        // this updates the property value
+        this.token = token;
+    }
 
     /**
      * Ideas for getther method owner()

@@ -174,15 +174,22 @@ class Game {
     /**
      * switchPlayers() method - Switches active player
      * Method receives no arguments and does not return anything.
+     * This method changes the value of the active property of each player. 
      * Inside this method, we want to iterate through the array of Players. 
      * For each Player object. switch the value of its "active" property.
      * If the "active" property is set to "true", it should now be set to "false" and vice versa.
      */
-
-
+    switchPlayers() {
+        for (let player of this.players) {
+            // ternary expression 
+            // "player.active === true" is our test/condition, and reads as "if the players active property equals true".
+            // If the condition passes, return false. If it fails, return true. 
+            player.active = player.active === true ? false : true;
+        }
+    }
 
     /** 
-     * gameOver() method - Displays the "Game Over" message
+     * gameOver() method - Displays the "Game Over" message and winner info
      * @param {string} message - "Game Over" message.
      * @return nothing
      * Our method receives one argument "message", a string value to display on screen when the game is over.
@@ -190,4 +197,8 @@ class Game {
      * The element's display property is set to "none".
      * To display the message, the display property must be set to "block" and the "textContent" property must be set equal to the message.
      */
+    gameOver(message) {
+        document.getElementById('game-over').style.display = 'block';
+        document.getElementById('game-over').textContent = message;
+    }
 }
