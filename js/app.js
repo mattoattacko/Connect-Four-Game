@@ -19,6 +19,20 @@ document.getElementById('begin-game').addEventListener('click', function() {
 });
 
 /**
+ * Future implimentation of a restart game button
+ * beginGameButton.addEventListener('click', function() {
+ *  if (beginGameButton.textContent.trim() === 'Start') {
+ *      game.startGame();
+ * 
+ *      this.style.display = 'none';
+ *      document.getElementById('play-area').style.opacity = '1';
+ *          } else if (beginGameButton.textContent.trim() === 'Restart') {
+ *              window.location.reload();
+ *          }
+ *  });
+ */
+
+/**
  * Listens for keyboard presses
  * Callback function in the event listener receives the event object as an argument. 
  * Inside the callback, we call the "handleKeydown" method on the Game object and pass in that event.

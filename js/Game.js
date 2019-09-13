@@ -230,7 +230,18 @@ class Game {
      * To display the message, the display property must be set to "block" and the "textContent" property must be set equal to the message.
      */
     gameOver(message) {
+
         document.getElementById('game-over').style.display = 'block';
         document.getElementById('game-over').textContent = message;
     }
+
+    // gameOver(message) {
+    //     const gameOverBox = document.getElementById('game-over');
+
+    //     gameOverBox.style.display = 'block';
+    //     gameOverBox.innerHTML = message;
+
+    //     beginGameButton.style.display = 'block';
+    //     beginGameButton.textContent = 'Restart';
+    // }
 }
