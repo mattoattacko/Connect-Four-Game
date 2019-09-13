@@ -8,7 +8,7 @@ class Game {
     }
 
     /**
-     * Getter method returns active player
+     * Getter method that returns active player
      * @return {Object} player - The active player
      * We use array method 'find' instead of 'filter'. 'Filter' would return an array of every element that passes the provided test, and since we are only looking for a single value here, we use 'find' to simply return the first/only element that passes the test.
      * Our test condition here is wether or not the Player objects active property = true?
@@ -30,7 +30,7 @@ class Game {
     }
     
     /**
-     * Gets game ready for playing
+     * Initializes the game
      */
     startGame() {
         // we want to access the board object inside the Game class. 
@@ -43,7 +43,6 @@ class Game {
     }
 
     /**
-     * Ideas for handleKeydown() method
      * Branches code, depending on what key player presses
      * @param   {Object} e - Keydown event object
      * This method should receive the keydown event as an argument.
@@ -65,7 +64,7 @@ class Game {
                 // We pass in this value rather than a static value inside the method because we might want to refactor our game in the future to allow further user customization. 
                 this.activePlayer.activeToken.moveRight(this.board.columns);
             } else if (e.key === "ArrowDown") {
-                // play token
+                this.playToken();
             }
         }
     }
@@ -103,6 +102,37 @@ class Game {
             activeToken.drop(targetSpace, function() {
                 game.updateGameState(activeToken, targetSpace);
             });
+        }
+    }
+
+    /**
+     * Updates the game state after token is dropped.
+     * @param {Object} token - The token that is being dropped. Token is the token object that was most recently dropped by a player. 
+     * @param {Object} target - Targeted space for dropped token. Target is the space object that the token no occupys. 
+     * Method needs to call the "mark()" method on the targeted Space object to associate it with the dropped Token.
+     * Method then performs a check to see if the game was won. If won, "gameOver()" method is called. If not won, game switches players.
+     * After player switch, game checks to ensure that the "activePlayer" still has available tokens. If there are available tokens, then draw a new "htmlToken" and set the game state to ready. If no tokens available, game is over.
+     */
+    updateGameState(token, target) {
+        // associates the space object w/ the dropped token. We call the mark() method on the target space, and pass in the dropped token. This sets the target space's Token property to the dropped Token object.
+        target.mark(token);
+
+        // Checks if the last move was a winning move.
+        if (!this.checkForWin(target)) {
+
+            // If it was not, we switch players by calling the switchPlayers method
+            this.switchPlayers();
+            console.log('no win');
+            // Checks if the newly active player still has tokens. If not, game is over. If they do, we need to render a new html token for them using the drawHTMLtoken() method. Then sets game state back to ready. 
+            if (this.activePlayer.checkTokens()) {
+                this.activePlayer.activeToken.drawHTMLToken();
+                this.ready = true;
+            } else {
+                this.gameOver('No tokens remain');
+            }
+        } else {
+            console.log('win');
+            this.gameOver(`${target.owner.name} wins!`) 
         }
     }
 
@@ -173,7 +203,7 @@ class Game {
     }
 
     /**
-     * switchPlayers() method - Switches active player
+     * Switches active player.
      * Method receives no arguments and does not return anything.
      * This method changes the value of the active property of each player. 
      * Inside this method, we want to iterate through the array of Players. 
@@ -189,17 +219,9 @@ class Game {
         }
     }
 
-    /**
-     * Updates the game state after token is dropped.
-     * @param {Object} token - The token that is being dropped.
-     * @param {Object} target - Targeted space for dropped token.
-     * Method needs to call the "mark()" method on the targeted Space object to associate it with the dropped Token.
-     * Method then performs a check to see if the game was won. If won, "gameOver()" method is called. If not won, game switches players.
-     * After player switch, game checks to ensure that the "activePlayer" still has available tokens. If there are available tokens, then draw a new "htmlToken" and set the game state to ready. If no tokens available, game is over.
-     */
-
+    
     /** 
-     * gameOver() method - Displays the "Game Over" message and winner info
+     * Displays the "Game Over" message and winner info.
      * @param {string} message - "Game Over" message.
      * @return nothing
      * Our method receives one argument "message", a string value to display on screen when the game is over.

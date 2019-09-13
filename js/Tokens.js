@@ -71,7 +71,6 @@ class Token {
     }
 
     /**
-     * Ideas for the drop() method
      * Drops html token into the target board space.
      * @param {Object} target - is the actual Space object the Token is beign dropped into. Target is the argument and is the Space object the Token is being dropped into.
      * @param {function} reset - The reset function to call after the drop animation has completed. Reset is the argument and is a callback function we will write later. 

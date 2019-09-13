@@ -10,7 +10,7 @@ class Players {
     /** 
     * Creates the token objects for our players
     * @param {integer} num - Number of token objects to be created 
-    * @returns {array} an array of the newly created token objects
+    * @returns {array} tokens - an array of the newly created token objects
     */
    createTokens(num) {
     const tokens = [];
@@ -22,22 +22,6 @@ class Players {
 
     return tokens;
 }
-
-    /**
-     * Gets all tokens that have not been dropped yet.
-     * @return {array} - Array of unused tokens.
-     */
-    get unusedTokens() {
-        return this.tokens.filter(token => !token.dropped);
-    }
-
-    /**
-     * Gets the active token by returning the first token in the array of unused tokens.
-     * @return {Object} - First token object in the array of unused tokens.
-     */
-    get activeToken() {
-        return this.unusedTokens[0];
-    }
 
     /**
      * Gets all tokens that have not been dropped
@@ -60,8 +44,11 @@ class Players {
     }
 
     /**
-     * checkTokens() method
      * Check if a player has any undropped tokens available
      * @return {Boolean} - returns a boolean value indicating wether or not the Player has any remaining tokens. 
      */
+    // if the length of the unusedTokens array (this.unusedTokens.length == 0) equals zero, then we return false. Else we return true.
+    checkTokens() {
+        return this.unusedTokens.length == 0 ? false : true;
+    }
 }
