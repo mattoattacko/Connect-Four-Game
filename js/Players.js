@@ -58,4 +58,10 @@ class Players {
     get activeToken() {
         return this.unusedTokens[0];
     }
+
+    /**
+     * checkTokens() method
+     * Check if a player has any undropped tokens available
+     * @return {Boolean} - returns a boolean value indicating wether or not the Player has any remaining tokens. 
+     */
 }

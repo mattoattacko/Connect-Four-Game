@@ -45,7 +45,7 @@ class Game {
     /**
      * Ideas for handleKeydown() method
      * Branches code, depending on what key player presses
-     * @param   {Object}    e - Keydown event object
+     * @param   {Object} e - Keydown event object
      * This method should receive the keydown event as an argument.
      * This method should not return anything.
      * This method should test to see if the Game is ready, using the Game object's ready property.
@@ -97,13 +97,14 @@ class Game {
         // If that is not the case and we found a target space, then we set the games ready state to false (so the game can't continue until after the htmlToken is dropped) and call the drop method on the activeToken passing in the targetSpace as a parameter.  
         if (targetSpace !== null) {
             console.log('token played');
+            const game = this;
             game.ready = false;
-            activeToken.drop(targetSpace);
+
+            activeToken.drop(targetSpace, function() {
+                game.updateGameState(activeToken, targetSpace);
+            });
         }
     }
-
-
-
 
     /**
      * Checks if there is a winner on the board after each token drop.
@@ -187,6 +188,15 @@ class Game {
             player.active = player.active === true ? false : true;
         }
     }
+
+    /**
+     * Updates the game state after token is dropped.
+     * @param {Object} token - The token that is being dropped.
+     * @param {Object} target - Targeted space for dropped token.
+     * Method needs to call the "mark()" method on the targeted Space object to associate it with the dropped Token.
+     * Method then performs a check to see if the game was won. If won, "gameOver()" method is called. If not won, game switches players.
+     * After player switch, game checks to ensure that the "activePlayer" still has available tokens. If there are available tokens, then draw a new "htmlToken" and set the game state to ready. If no tokens available, game is over.
+     */
 
     /** 
      * gameOver() method - Displays the "Game Over" message and winner info
